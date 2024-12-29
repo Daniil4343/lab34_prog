@@ -1,0 +1,126 @@
+@startuml
+
+interface Aromatizable {
+    + reduceSmell(amount: int)
+}
+
+class AromatizationTeam {
+    - teamName: String
+    - soldiers: Soldiers
+    + performAromatization(target: Aromatizable)
+    + getTeamName(): String
+    + getSoldiers(): Soldiers
+}
+
+class Character {
+    - name: String
+    + getName(): String
+    + performAction()
+}
+
+class Courtiers {
+    - worryLevel: int
+    + developPlan()
+    + advise()
+}
+
+class ExhaustedException {
+    + ExhaustedException(message: String)
+}
+
+class InvalidActionException {
+    + InvalidActionException(message: String)
+}
+
+enum LiquidType {
+    COLOGNE
+    VIOLET_ESSENCE
+    ROSE_WATER
+}
+
+class LocalResident {
+    - smellImpact: SmellRecord
+    + LocalResident(name: String, smellImpact: SmellRecord)
+    + reduceSmell(amount: int)
+    + performAction()
+}
+
+class Main {
+    + main(args: String[])
+}
+
+class Outskirts {
+    - name: String
+    - smellLevel: SmellRecord
+    + getName(): String
+    + getSmellLevel(): SmellRecord
+    + reduceSmell(amount: int)
+}
+
+class PrinceLemon {
+    - title: String
+    + arrive(location: String)
+    + expressOpinion(smellLevel: int)
+    + performAction()
+}
+
+class RandomizeSmellLevel {
+    + generate(): int
+}
+
+class SmellRecord {
+    + level: int
+    + description: String
+}
+
+class Soldiers {
+    - soldierCount: int
+    - sprayers: Sprayer[]
+    + spray(target: Aromatizable)
+    + getSoldierCount(): int
+    + getSprayers(): Sprayer[]
+}
+
+class Sprayer {
+    - volume: int
+    - liquidType: LiquidType
+    + spray(target: Aromatizable)
+    + recharge(amount: int)
+    + hasLiquid(): boolean
+}
+
+class Cipollino extends Character {
+    - father: Cipollone
+    - brothers: Cipollino[]
+    - isSneezing: boolean
+    + Cipollino(name: String, father: Cipollone)
+    + startSneezing()
+}
+
+class Cipollone extends LocalResident {
+    - houseSize: String
+    + complain()
+}
+
+
+class LimonCourtier extends Courtiers {
+    + adjustForPrinceVisit()
+}
+
+class Visit {
+    - arrivalTime: Date
+    - visitor: String
+    + prepareVisit(location: Aromatizable)
+}
+
+AromatizationTeam <-- Soldiers
+AromatizationTeam <-- Aromatizable
+LocalResident <-- Character
+LocalResident <-- Aromatizable
+PrinceLemon <-- Character
+Soldiers <-- Sprayer
+Sprayer <-- LiquidType
+Outskirts <-- Aromatizable
+
+Visit <-- PrinceLemon
+@enduml
