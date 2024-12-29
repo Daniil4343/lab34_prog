@@ -36,13 +36,4 @@ public class AromatizationTeam {
     public int hashCode() {
         return Objects.hash(teamName, soldiers);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        AromatizationTeam that = (AromatizationTeam) obj;
-        return Objects.equals(teamName, that.teamName) &&
-                Objects.equals(soldiers, that.soldiers);
-    }
 }
